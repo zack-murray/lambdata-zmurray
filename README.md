@@ -1,13 +1,21 @@
 # lambdata-zmurray
+
 ## Installation
 
-TODO 
+```
+pip install -i https://test.pypi.org/simple/lambdata-zmurray
+```
 
-Fork this repo, then download your own copy of i. Then navigate into this directory from the command line.
-'''
-pipenv install
-pipenv shell
-'''
-## USAGE
 
-TODO
+## Usage
+
+```
+from my_lambdata.my_mod import flto_nc
+
+def flto_nc(df, l, col_name)
+```
+```
+from my_lambdata.my_mod import split_column_date
+
+def split_column_date(X, column_name)
+```

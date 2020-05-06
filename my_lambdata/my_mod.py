@@ -1,66 +1,106 @@
 import pandas as pd
 from pandas import DataFrame
 
-# Turn list into series then add it as a new column to the dataframe
-# df = dataframe, l = list, col_name = column name
 
+class Alterdata():
+    def __init__(self, df):
+        """
+        Class constructor for Alterdata
 
-def flto_nc(df, l, col_name):
-    df[col_name] = l
+        This class is designed to take a given DataFrame
+        and modify it for further research
 
-# Split date into multiple columns
-# X = dataframe, column_name = self explanatory
+        Params: df a pandas.Dataframe that will be modified.
 
+        Example: df2 = my_mod.Alterdata(df)
+        """
+        self.df = df.copy()
 
-def split_column_date(X, column_name):
-    X[column_name] = pd.to_datetime(X[column_name])
-    X[column_name + '_year'] = X[column_name].dt.year
-    X[column_name + '_month'] = X[column_name].dt.month
-    X[column_name + '_day'] = X[column_name].dt.day
-    X[column_name] = X[column_name].dt.strftime('%Y-%m-%d')
-    return X
+    def return_dataframe(self):
+        """
+        Use with regards to Alterdata. Takes the modified dataframe
+        out of the data alterer
 
-# Convert state abbreviations to full names
-# FL -> Florida, etc.
+        Returns: a pandas Dataframe as stored in the modifier
+        """
+        return self.df
 
+    def flto_nc(self, l, col_name):
 
-def add_state_names(my_df):
+        """
+        Turns a list into a series, then adds it as a new column to the
+        end of the Dataframe
 
-    """
-    Converts a dataframe with a column of state abbreviations, adding a
-    corresponding
+        Params: l a list that you want to transform into a series
+                col_name the name given to your list converted to column
 
-    Params: my_df a pandas.DataFrame with a column called "abbrev".
+        Example: flto_nc(df, l, 'nameoflist')
 
-    Example: add_state_names(DataFrame({"abbrev":["CA", "CO", "CT",
-    "DC", "TX"]})
+        Returns: a pandas.Dataframe with a new named column that incorporates
+                 the list passed through.
 
-    Returns: a pandas.DataFrame with the original col as well as a
-    "name" column.
-    """
+        """
+        self.df[col_name] = l
 
-    new_frame = my_df.copy()
+    def split_column_date(self, X, column_name):
 
-    # need a list with abbrev/name mappings
-    names_map = {"CA": "California", "CO": "Colorado",
-                 "CT": "Connecticut", "DC": "District of Columbia"}
+        """
+        Splits a date column into multiple columns given in respect to the
+        given year-month-day given
 
-    # create a new column which maps the existing column using our names map
+        Params: X a pandas.Dataframe that includes a dated column
+                column_name a column in the Dataframe with an implied date
 
-    # create breakpoint
-    # breakpoint()
+        Example: X2 = split_column_date(X, 'First game won')
 
-    new_frame["name"] = new_frame["abbrev"].map(names_map)
+        Returns: a pandas.Dataframe with the original column, as well as
+                1-3 new columns depending on the date split
 
-    return new_frame
+        """
+        X[column_name] = pd.to_datetime(X[column_name])
+        X[column_name + '_year'] = X[column_name].dt.year
+        X[column_name + '_month'] = X[column_name].dt.month
+        X[column_name + '_day'] = X[column_name].dt.day
+        X[column_name] = X[column_name].dt.strftime('%Y-%m-%d')
+        return X
 
-if __name__ == "__main__":
+    def add_state_names(self, my_df):
+
+        """
+        Converts a dataframe with a column of state abbreviations, adding a
+        corresponding
+
+        Params: my_df a pandas.DataFrame with a column called "abbrev".
+
+        Example: add_state_names(DataFrame({"abbrev":["CA", "CO", "CT",
+        "DC", "TX"]})
+
+        Returns: a pandas.DataFrame with the original col as well as a
+        "name" column.
+        """
+
+        new_frame = my_df.copy()
+
+        # need a list with abbrev/name mappings
+        names_map = {"CA": "California", "CO": "Colorado",
+                     "CT": "Connecticut", "DC": "District of Columbia"}
+
+        # create new column which maps the existing column using our names map
+
+        # create breakpoint
+        # breakpoint()
+
+        new_frame["name"] = new_frame["abbrev"].map(names_map)
+
+        return new_frame
+
+#if __name__ == "__main__":
     # only run following code when we run this script
     # from the command-line
     # otherwise don't invoke this code(for example when importing from another
     # file)
-    df = DataFrame({"abbrev": ["CA", "CO", "CT", "DC", "TX"]})
-    print(df.head())
+    #df = DataFrame({"abbrev": ["CA", "CO", "CT", "DC", "TX"]})
+    #print(df.head())
 
-    df2 = add_state_names(df)
-    print(df2.head())
+    #df2 = add_state_names(df)
+    #print(df2.head())

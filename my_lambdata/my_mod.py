@@ -42,7 +42,7 @@ class Alterdata():
         """
         self.df[col_name] = l
 
-    def split_column_date(self, X, column_name):
+    def split_column_date(self, df, column_name):
 
         """
         Splits a date column into multiple columns given in respect to the
@@ -57,12 +57,12 @@ class Alterdata():
                 1-3 new columns depending on the date split
 
         """
-        X[column_name] = pd.to_datetime(X[column_name])
-        X[column_name + '_year'] = X[column_name].dt.year
-        X[column_name + '_month'] = X[column_name].dt.month
-        X[column_name + '_day'] = X[column_name].dt.day
-        X[column_name] = X[column_name].dt.strftime('%Y-%m-%d')
-        return X
+        df[column_name] = pd.to_datetime(df[column_name])
+        df[column_name + '_year'] = df[column_name].dt.year
+        df[column_name + '_month'] = df[column_name].dt.month
+        df[column_name + '_day'] = df[column_name].dt.day
+        df[column_name] = df[column_name].dt.strftime('%Y-%m-%d')
+        return self.df
 
     def add_state_names(self, my_df):
 

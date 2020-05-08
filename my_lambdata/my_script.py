@@ -1,9 +1,8 @@
 import pandas as pd
 
 # import my mod
-# from my-mod import flto_nc and dato_cl
-from my_lambdata.my_mod import flto_nc
-from my_lambdata.my_mod import split_column_date
+# from my-mod import Alterdata class
+from my_lambdata.my_mod import Alterdata
 
 # Instantiate df to test mod.py
 df = pd.DataFrame({"Friends": ['Gene, Aaron, Dom, Scott, Zack'],
@@ -12,4 +11,4 @@ df = pd.DataFrame({"Friends": ['Gene, Aaron, Dom, Scott, Zack'],
                                       5-6-2007, 10-2-1991]})
 
 # List also to test mod.py
-l = [5, 10, 15, 20, 25]
+alist = [5, 10, 15, 20, 25]

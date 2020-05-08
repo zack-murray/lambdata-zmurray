@@ -32,7 +32,7 @@ class Alterdata():
         end of the Dataframe
 
         Params: l a list that you want to transform into a series
-                col_name the name given to your list converted to column
+                col_name the name given to your list converted column
 
         Example: flto_nc(df, l, 'nameoflist')
 
@@ -48,7 +48,7 @@ class Alterdata():
         Splits a date column into multiple columns given in respect to the
         given year-month-day given
 
-        Params: X a pandas.Dataframe that includes a dated column
+        Params: df a pandas.Dataframe that includes a dated column
                 column_name a column in the Dataframe with an implied date
 
         Example: X2 = split_column_date(X, 'First game won')
@@ -94,13 +94,13 @@ class Alterdata():
 
         return new_frame
 
-#if __name__ == "__main__":
+# if __name__ == "__main__":
     # only run following code when we run this script
     # from the command-line
     # otherwise don't invoke this code(for example when importing from another
     # file)
-    #df = DataFrame({"abbrev": ["CA", "CO", "CT", "DC", "TX"]})
-    #print(df.head())
+    # df = DataFrame({"abbrev": ["CA", "CO", "CT", "DC", "TX"]})
+    # print(df.head())
 
-    #df2 = add_state_names(df)
-    #print(df2.head())
+    # df2 = add_state_names(df)
+    # print(df2.head())
